@@ -6,16 +6,17 @@ extends Entity
 
 signal animation_complete(animation_name:String)
 
-func play_animation(animation_name:String) -> void : 
+func play_animation(animation_name:String) -> void :
 	animation_player.play(animation_name)
-func stop_animation() -> void : 
+
+func stop_animation() -> void :
 	animation_player.stop()
 
 func flip_sprite(direction:float) -> void :
 	sprite.flip_h = (direction == -1)
 	sprite.offset.x = direction * abs(sprite.offset.x)
 
-func _ready() -> void : 
+func _ready() -> void :
 	super()
 	animation_player.animation_finished.connect(_on_animation_complete)
 

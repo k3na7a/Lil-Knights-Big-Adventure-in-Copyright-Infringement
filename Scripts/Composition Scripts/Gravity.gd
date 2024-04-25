@@ -11,3 +11,6 @@ extends Node
 func is_on_floor() 		-> bool : return character.is_on_floor()
 func is_falling() 		-> bool : return character.velocity.y > 0.0 and not character.is_on_floor()
 func is_on_ceiling()	-> bool : return character.is_on_ceiling()
+
+func apply_gravity(delta:float) -> void :
+	character.velocity.y = move_toward(character.velocity.y, 1000, delta * gravity)

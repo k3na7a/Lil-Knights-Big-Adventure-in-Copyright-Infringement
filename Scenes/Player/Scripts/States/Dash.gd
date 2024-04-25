@@ -12,7 +12,7 @@ func enter() -> void :
 func exit() -> void :
 	super()
 	
-	player_velocity.reset()
+	velocity_component.reset()
 
 func process_input(event:InputEvent) -> State :
 	super(event)
@@ -24,14 +24,15 @@ func process_input(event:InputEvent) -> State :
 func process_physics(_delta:float) -> State :
 	var direction = -1 if sprite.flip_h else 1
 	
-	character.velocity.x = player_velocity.velocity * direction
+	character.velocity.x = velocity_component.velocity * direction
 	character.move_and_slide()
 	
-	handle_player_off_screen_x()
+	screen_clamp_component.handle_player_off_screen_x()
 	
 	if attack_complete:
 		if not character.is_on_floor() : return fall_state
 		else : return idle_state if InputBus.get_axis() == 0.0 else run_state 
 	return null
 
-func _on_character_animation_complete(anim_name:String) -> void  : if anim_name == animation_name : attack_complete = true
+func _on_player_animation_complete(anim_name:String) -> void  : 
+	if anim_name == animation_name : attack_complete = true

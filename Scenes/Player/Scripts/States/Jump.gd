@@ -3,7 +3,7 @@ extends PlayerState
 func enter() -> void :
 	super()
 	
-	jump_component.jump()
+	jump_component.handle_jump()
 
 func process_input(event:InputEvent) -> State :
 	super(event)

@@ -30,4 +30,5 @@ func process_physics(delta:float) -> State :
 		else 								: return idle_state				if InputBus.get_axis() == 0.0 else run_state
 	return null
 
-func _on_character_animation_complete(anim_name:String) -> void  : if anim_name == animation_name : attack_complete = true
+func _on_player_animation_complete(anim_name:String) -> void  : 
+	if anim_name == animation_name : attack_complete = true

@@ -46,7 +46,6 @@
 [ext_resource type="Texture2D" uid="uid://b351h11gm0d3y" path="res://Scenes/Player/Assets/Dash Attack/Warrior_Dash-Attack_5.png" id="37_bddg8"]
 [ext_resource type="Texture2D" uid="uid://pc3caxjfn12d" path="res://Scenes/Player/Assets/Dash Attack/Warrior_Dash-Attack_6.png" id="38_8urxt"]
 [ext_resource type="Texture2D" uid="uid://cdvpnfl6438t2" path="res://Scenes/Player/Assets/Dash Attack/Warrior_Dash-Attack_7.png" id="39_p1q1m"]
-[ext_resource type="Texture2D" uid="uid://dthw4ex641ykq" path="res://Scenes/Player/Assets/Dash Attack/Warrior_Dash-Attack_8.png" id="40_kwwp7"]
 [ext_resource type="Texture2D" uid="uid://btf7hb0sgytab" path="res://Scenes/Player/Assets/Dash/Warrior_Dash_1.png" id="40_t4jd3"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/States/Attack.gd" id="41_2xoik"]
 [ext_resource type="Texture2D" uid="uid://b8mcnl84uerk4" path="res://Scenes/Player/Assets/Dash/Warrior_Dash_2.png" id="41_ejxpp"]
@@ -62,6 +61,7 @@
 [ext_resource type="Texture2D" uid="uid://mpn77dvfr265" path="res://Scenes/Player/Assets/Crouch/Warrior_Crouch_3.png" id="48_yavb4"]
 [ext_resource type="Texture2D" uid="uid://rhe4uyitcjx0" path="res://Scenes/Player/Assets/Crouch/Warrior_Crouch_4.png" id="49_xve1u"]
 [ext_resource type="Texture2D" uid="uid://crmtl55odpkta" path="res://Scenes/Player/Assets/Crouch/Warrior_Crouch_5.png" id="50_fyydv"]
+[ext_resource type="PackedScene" uid="uid://bceqa1od2rur6" path="res://Scenes/Composition Scenes/screen_clamp.tscn" id="54_emcdr"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/States/AttackDash.gd" id="55_plyfc"]
 [ext_resource type="Script" path="res://Scenes/Player/Scripts/States/Crouch.gd" id="61_h68to"]
 
@@ -87,7 +87,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../../Composition Nodes/Velocity:velocity")
+tracks/1/path = NodePath("../Composition Nodes/Velocity:velocity")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -115,7 +115,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_s2a74"]
 resource_name = "_attack_dash"
-length = 0.8
+length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -123,10 +123,10 @@ tracks/0/path = NodePath(".:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [ExtResource("33_nmsni"), ExtResource("34_mnnyj"), ExtResource("35_mkpfh"), ExtResource("36_t505p"), ExtResource("37_bddg8"), ExtResource("38_8urxt"), ExtResource("39_p1q1m"), ExtResource("40_kwwp7")]
+"values": [ExtResource("33_nmsni"), ExtResource("34_mnnyj"), ExtResource("35_mkpfh"), ExtResource("36_t505p"), ExtResource("37_bddg8"), ExtResource("38_8urxt"), ExtResource("39_p1q1m")]
 }
 
 [sub_resource type="Animation" id="Animation_22t8e"]
@@ -143,6 +143,23 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [ExtResource("28_t0ndg"), ExtResource("29_gfd0w"), ExtResource("30_1x4ei"), ExtResource("31_3gg20")]
+}
+
+[sub_resource type="Animation" id="Animation_0unec"]
+resource_name = "_crouch"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("47_rylcs"), ExtResource("48_yavb4"), ExtResource("49_xve1u"), ExtResource("50_fyydv")]
 }
 
 [sub_resource type="Animation" id="Animation_5irx8"]
@@ -163,7 +180,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../../Composition Nodes/Velocity:velocity")
+tracks/1/path = NodePath("../Composition Nodes/Velocity:velocity")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -241,23 +258,6 @@ tracks/0/keys = {
 "values": [ExtResource("10_nt6us"), ExtResource("11_44lu4"), ExtResource("12_sgyuh"), ExtResource("13_ekre8"), ExtResource("14_4dlqj"), ExtResource("15_7gi6t"), ExtResource("16_vo0qe"), ExtResource("17_xwii5")]
 }
 
-[sub_resource type="Animation" id="Animation_0unec"]
-resource_name = "_crouch"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("47_rylcs"), ExtResource("48_yavb4"), ExtResource("49_xve1u"), ExtResource("50_fyydv")]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_47k3u"]
 _data = {
 "RESET": SubResource("Animation_gt40t"),
@@ -272,47 +272,55 @@ _data = {
 "_run": SubResource("Animation_p272v")
 }
 
-[node name="Player" type="Node2D"]
-script = ExtResource("44_vx7wv")
-
-[node name="Character" type="CharacterBody2D" parent="." node_paths=PackedStringArray("sprite", "animation_player", "state_machine")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "animation_player", "state_machine")]
 script = ExtResource("1_0p13y")
 sprite = NodePath("Sprite")
 animation_player = NodePath("Sprite/AnimationPlayer")
-state_machine = NodePath("../Finite State Machine")
+state_machine = NodePath("Composition Nodes/Finite State Machine")
 
-[node name="Sprite" parent="Character" instance=ExtResource("3_rm1p0")]
+[node name="Collision Body" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6.5)
+shape = ExtResource("2_5atcj")
+
+[node name="Sprite" parent="." instance=ExtResource("3_rm1p0")]
 material = SubResource("ShaderMaterial_4kjpx")
 texture = ExtResource("4_4diaw")
 offset = Vector2(5.5, 0)
-script = null
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Character/Sprite"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 libraries = {
 "": SubResource("AnimationLibrary_47k3u")
 }
 autoplay = "_idle"
 
-[node name="Collision Body" type="CollisionShape2D" parent="Character"]
-position = Vector2(0, 7)
-shape = ExtResource("2_5atcj")
-
 [node name="Composition Nodes" type="Node" parent="."]
 
 [node name="Gravity" parent="Composition Nodes" node_paths=PackedStringArray("character") instance=ExtResource("4_dy2dd")]
-character = NodePath("../../Character")
+character = NodePath("../..")
 
-[node name="Velocity" parent="Composition Nodes" instance=ExtResource("6_ljbux")]
+[node name="Velocity" parent="Composition Nodes" node_paths=PackedStringArray("character") instance=ExtResource("6_ljbux")]
+character = NodePath("../..")
 max_velocity = 150.0
+ground_friction = 1000.0
+air_friction = 500.0
 
 [node name="Jump" parent="Composition Nodes" node_paths=PackedStringArray("character") instance=ExtResource("24_6ucev")]
-character = NodePath("../../Character")
-base_jump_force = 300
+character = NodePath("../..")
+jump_force = 300
 
-[node name="Finite State Machine" parent="." node_paths=PackedStringArray("starting_state") instance=ExtResource("2_pkowi")]
-starting_state = NodePath("Idle")
+[node name="Screen Clamp" parent="Composition Nodes" node_paths=PackedStringArray("character") instance=ExtResource("54_emcdr")]
+character = NodePath("../..")
 
-[node name="Idle" type="Node" parent="Finite State Machine" node_paths=PackedStringArray("fall_state", "run_state", "jump_state", "attack_state", "idle_state", "combo_attack_state", "heavy_attack_state", "dash_state", "crouch_state", "jump_component", "player_velocity", "player_gravity", "state_machine", "animation_player", "sprite", "character")]
+[node name="Finite State Machine" parent="Composition Nodes" node_paths=PackedStringArray("starting_state") instance=ExtResource("2_pkowi")]
+starting_state = NodePath("../../Player States/Idle")
+
+[node name="Player States" type="Node" parent="." node_paths=PackedStringArray("velocity_component", "gravity_component", "screen_clamp_component")]
+script = ExtResource("44_vx7wv")
+velocity_component = NodePath("../Composition Nodes/Velocity")
+gravity_component = NodePath("../Composition Nodes/Gravity")
+screen_clamp_component = NodePath("../Composition Nodes/Screen Clamp")
+
+[node name="Idle" type="Node" parent="Player States" node_paths=PackedStringArray("fall_state", "run_state", "jump_state", "attack_state", "idle_state", "combo_attack_state", "heavy_attack_state", "dash_state", "crouch_state", "jump_component", "velocity_component", "gravity_component", "screen_clamp_component", "state_machine", "animation_player", "sprite", "character")]
 script = ExtResource("3_vce00")
 fall_state = NodePath("../Fall")
 run_state = NodePath("../Run")
@@ -324,16 +332,17 @@ heavy_attack_state = NodePath("../AttackHeavy")
 dash_state = NodePath("../Dash")
 crouch_state = NodePath("../Crouch")
 jump_component = NodePath("../../Composition Nodes/Jump")
-player_velocity = NodePath("../../Composition Nodes/Velocity")
-player_gravity = NodePath("../../Composition Nodes/Gravity")
+velocity_component = NodePath("../../Composition Nodes/Velocity")
+gravity_component = NodePath("../../Composition Nodes/Gravity")
+screen_clamp_component = NodePath("../../Composition Nodes/Screen Clamp")
 has_control = true
-state_machine = NodePath("..")
-animation_player = NodePath("../../Character/Sprite/AnimationPlayer")
-sprite = NodePath("../../Character/Sprite")
-character = NodePath("../../Character")
+state_machine = NodePath("../../Composition Nodes/Finite State Machine")
+animation_player = NodePath("../../Sprite/AnimationPlayer")
+sprite = NodePath("../../Sprite")
+character = NodePath("../..")
 animation_name = "_idle"
 
-[node name="Fall" type="Node" parent="Finite State Machine" node_paths=PackedStringArray("timer", "fall_state", "run_state", "jump_state", "attack_state", "idle_state", "combo_attack_state", "heavy_attack_state", "dash_state", "crouch_state", "jump_component", "player_velocity", "player_gravity", "state_machine", "animation_player", "sprite", "character")]
+[node name="Fall" type="Node" parent="Player States" node_paths=PackedStringArray("timer", "fall_state", "run_state", "jump_state", "attack_state", "idle_state", "combo_attack_state", "heavy_attack_state", "dash_state", "crouch_state", "jump_component", "velocity_component", "gravity_component", "screen_clamp_component", "state_machine", "animation_player", "sprite", "character")]
 script = ExtResource("22_63qo5")
 timer = NodePath("Input Buffer")
 fall_state = NodePath(".")
@@ -346,21 +355,22 @@ heavy_attack_state = NodePath("../AttackHeavy")
 dash_state = NodePath("../Dash")
 crouch_state = NodePath("../Crouch")
 jump_component = NodePath("../../Composition Nodes/Jump")
-player_velocity = NodePath("../../Composition Nodes/Velocity")
-player_gravity = NodePath("../../Composition Nodes/Gravity")
+velocity_component = NodePath("../../Composition Nodes/Velocity")
+gravity_component = NodePath("../../Composition Nodes/Gravity")
+screen_clamp_component = NodePath("../../Composition Nodes/Screen Clamp")
 has_control = true
 sprite_offset = Vector2(4.5, 0)
-state_machine = NodePath("..")
-animation_player = NodePath("../../Character/Sprite/AnimationPlayer")
-sprite = NodePath("../../Character/Sprite")
-character = NodePath("../../Character")
+state_machine = NodePath("../../Composition Nodes/Finite State Machine")
+animation_player = NodePath("../../Sprite/AnimationPlayer")
+sprite = NodePath("../../Sprite")
+character = NodePath("../..")
 animation_name = "_fall"
 
-[node name="Input Buffer" type="Timer" parent="Finite State Machine/Fall"]
-wait_time = 0.2
+[node name="Input Buffer" type="Timer" parent="Player States/Fall"]
+wait_time = 0.15
 one_shot = true
 
-[node name="Run" type="Node" parent="Finite State Machine" node_paths=PackedStringArray("fall_state", "run_state", "jump_state", "attack_state", "idle_state", "combo_attack_state", "heavy_attack_state", "dash_state", "crouch_state", "jump_component", "player_velocity", "player_gravity", "state_machine", "animation_player", "sprite", "character")]
+[node name="Run" type="Node" parent="Player States" node_paths=PackedStringArray("fall_state", "run_state", "jump_state", "attack_state", "idle_state", "combo_attack_state", "heavy_attack_state", "dash_state", "crouch_state", "jump_component", "velocity_component", "gravity_component", "screen_clamp_component", "state_machine", "animation_player", "sprite", "character")]
 script = ExtResource("4_ta5dh")
 fall_state = NodePath("../Fall")
 run_state = NodePath(".")
@@ -372,16 +382,17 @@ heavy_attack_state = NodePath("../AttackHeavy")
 dash_state = NodePath("../Dash")
 crouch_state = NodePath("../Crouch")
 jump_component = NodePath("../../Composition Nodes/Jump")
-player_velocity = NodePath("../../Composition Nodes/Velocity")
-player_gravity = NodePath("../../Composition Nodes/Gravity")
+velocity_component = NodePath("../../Composition Nodes/Velocity")
+gravity_component = NodePath("../../Composition Nodes/Gravity")
+screen_clamp_component = NodePath("../../Composition Nodes/Screen Clamp")
 has_control = true
-state_machine = NodePath("..")
-animation_player = NodePath("../../Character/Sprite/AnimationPlayer")
-sprite = NodePath("../../Character/Sprite")
-character = NodePath("../../Character")
+state_machine = NodePath("../../Composition Nodes/Finite State Machine")
+animation_player = NodePath("../../Sprite/AnimationPlayer")
+sprite = NodePath("../../Sprite")
+character = NodePath("../..")
 animation_name = "_run"
 
-[node name="Jump" type="Node" parent="Finite State Machine" node_paths=PackedStringArray("fall_state", "run_state", "jump_state", "attack_state", "idle_state", "combo_attack_state", "heavy_attack_state", "dash_state", "crouch_state", "jump_component", "player_velocity", "player_gravity", "state_machine", "animation_player", "sprite", "character")]
+[node name="Jump" type="Node" parent="Player States" node_paths=PackedStringArray("fall_state", "run_state", "jump_state", "attack_state", "idle_state", "combo_attack_state", "heavy_attack_state", "dash_state", "crouch_state", "jump_component", "velocity_component", "gravity_component", "screen_clamp_component", "state_machine", "animation_player", "sprite", "character")]
 script = ExtResource("21_r5cqe")
 fall_state = NodePath("../Fall")
 run_state = NodePath("../Run")
@@ -393,17 +404,18 @@ heavy_attack_state = NodePath("../AttackHeavy")
 dash_state = NodePath("../Dash")
 crouch_state = NodePath("../Crouch")
 jump_component = NodePath("../../Composition Nodes/Jump")
-player_velocity = NodePath("../../Composition Nodes/Velocity")
-player_gravity = NodePath("../../Composition Nodes/Gravity")
+velocity_component = NodePath("../../Composition Nodes/Velocity")
+gravity_component = NodePath("../../Composition Nodes/Gravity")
+screen_clamp_component = NodePath("../../Composition Nodes/Screen Clamp")
 has_control = true
 sprite_offset = Vector2(4.5, 0)
-state_machine = NodePath("..")
-animation_player = NodePath("../../Character/Sprite/AnimationPlayer")
-sprite = NodePath("../../Character/Sprite")
-character = NodePath("../../Character")
+state_machine = NodePath("../../Composition Nodes/Finite State Machine")
+animation_player = NodePath("../../Sprite/AnimationPlayer")
+sprite = NodePath("../../Sprite")
+character = NodePath("../..")
 animation_name = "_jump"
 
-[node name="Crouch" type="Node" parent="Finite State Machine" node_paths=PackedStringArray("fall_state", "run_state", "jump_state", "attack_state", "idle_state", "combo_attack_state", "heavy_attack_state", "dash_state", "crouch_state", "jump_component", "player_velocity", "player_gravity", "state_machine", "animation_player", "sprite", "character")]
+[node name="Crouch" type="Node" parent="Player States" node_paths=PackedStringArray("fall_state", "run_state", "jump_state", "attack_state", "idle_state", "combo_attack_state", "heavy_attack_state", "dash_state", "crouch_state", "jump_component", "velocity_component", "gravity_component", "screen_clamp_component", "state_machine", "animation_player", "sprite", "character")]
 script = ExtResource("61_h68to")
 fall_state = NodePath("../Fall")
 run_state = NodePath("../Run")
@@ -415,17 +427,18 @@ heavy_attack_state = NodePath("../AttackHeavy")
 dash_state = NodePath("../Dash")
 crouch_state = NodePath(".")
 jump_component = NodePath("../../Composition Nodes/Jump")
-player_velocity = NodePath("../../Composition Nodes/Velocity")
-player_gravity = NodePath("../../Composition Nodes/Gravity")
+velocity_component = NodePath("../../Composition Nodes/Velocity")
+gravity_component = NodePath("../../Composition Nodes/Gravity")
+screen_clamp_component = NodePath("../../Composition Nodes/Screen Clamp")
 has_control = true
 sprite_offset = Vector2(8, 0)
-state_machine = NodePath("..")
-animation_player = NodePath("../../Character/Sprite/AnimationPlayer")
-sprite = NodePath("../../Character/Sprite")
-character = NodePath("../../Character")
+state_machine = NodePath("../../Composition Nodes/Finite State Machine")
+animation_player = NodePath("../../Sprite/AnimationPlayer")
+sprite = NodePath("../../Sprite")
+character = NodePath("../..")
 animation_name = "_crouch"
 
-[node name="Dash" type="Node" parent="Finite State Machine" node_paths=PackedStringArray("fall_state", "run_state", "jump_state", "attack_state", "idle_state", "combo_attack_state", "heavy_attack_state", "dash_state", "crouch_state", "jump_component", "player_velocity", "player_gravity", "state_machine", "animation_player", "sprite", "character")]
+[node name="Dash" type="Node" parent="Player States" node_paths=PackedStringArray("fall_state", "run_state", "jump_state", "attack_state", "idle_state", "combo_attack_state", "heavy_attack_state", "dash_state", "crouch_state", "jump_component", "velocity_component", "gravity_component", "screen_clamp_component", "state_machine", "animation_player", "sprite", "character")]
 script = ExtResource("46_a8402")
 fall_state = NodePath("../Fall")
 run_state = NodePath("../Run")
@@ -437,16 +450,17 @@ heavy_attack_state = NodePath("../AttackHeavy")
 dash_state = NodePath(".")
 crouch_state = NodePath("../Crouch")
 jump_component = NodePath("../../Composition Nodes/Jump")
-player_velocity = NodePath("../../Composition Nodes/Velocity")
-player_gravity = NodePath("../../Composition Nodes/Gravity")
+velocity_component = NodePath("../../Composition Nodes/Velocity")
+gravity_component = NodePath("../../Composition Nodes/Gravity")
+screen_clamp_component = NodePath("../../Composition Nodes/Screen Clamp")
 sprite_offset = Vector2(8.5, 0)
-state_machine = NodePath("..")
-animation_player = NodePath("../../Character/Sprite/AnimationPlayer")
-sprite = NodePath("../../Character/Sprite")
-character = NodePath("../../Character")
+state_machine = NodePath("../../Composition Nodes/Finite State Machine")
+animation_player = NodePath("../../Sprite/AnimationPlayer")
+sprite = NodePath("../../Sprite")
+character = NodePath("../..")
 animation_name = "_dash"
 
-[node name="Attack" type="Node" parent="Finite State Machine" node_paths=PackedStringArray("fall_state", "run_state", "jump_state", "attack_state", "idle_state", "combo_attack_state", "heavy_attack_state", "dash_state", "crouch_state", "jump_component", "player_velocity", "player_gravity", "state_machine", "animation_player", "sprite", "character")]
+[node name="Attack" type="Node" parent="Player States" node_paths=PackedStringArray("fall_state", "run_state", "jump_state", "attack_state", "idle_state", "combo_attack_state", "heavy_attack_state", "dash_state", "crouch_state", "jump_component", "velocity_component", "gravity_component", "screen_clamp_component", "state_machine", "animation_player", "sprite", "character")]
 script = ExtResource("41_2xoik")
 fall_state = NodePath("../Fall")
 run_state = NodePath("../Run")
@@ -458,16 +472,17 @@ heavy_attack_state = NodePath("../AttackHeavy")
 dash_state = NodePath("../Dash")
 crouch_state = NodePath("../Crouch")
 jump_component = NodePath("../../Composition Nodes/Jump")
-player_velocity = NodePath("../../Composition Nodes/Velocity")
-player_gravity = NodePath("../../Composition Nodes/Gravity")
+velocity_component = NodePath("../../Composition Nodes/Velocity")
+gravity_component = NodePath("../../Composition Nodes/Gravity")
+screen_clamp_component = NodePath("../../Composition Nodes/Screen Clamp")
 sprite_offset = Vector2(3.5, 0)
-state_machine = NodePath("..")
-animation_player = NodePath("../../Character/Sprite/AnimationPlayer")
-sprite = NodePath("../../Character/Sprite")
-character = NodePath("../../Character")
+state_machine = NodePath("../../Composition Nodes/Finite State Machine")
+animation_player = NodePath("../../Sprite/AnimationPlayer")
+sprite = NodePath("../../Sprite")
+character = NodePath("../..")
 animation_name = "_attack_ground"
 
-[node name="AttackCombo" type="Node" parent="Finite State Machine" node_paths=PackedStringArray("fall_state", "run_state", "jump_state", "attack_state", "idle_state", "combo_attack_state", "heavy_attack_state", "dash_state", "crouch_state", "jump_component", "player_velocity", "player_gravity", "state_machine", "animation_player", "sprite", "character")]
+[node name="AttackCombo" type="Node" parent="Player States" node_paths=PackedStringArray("fall_state", "run_state", "jump_state", "attack_state", "idle_state", "combo_attack_state", "heavy_attack_state", "dash_state", "crouch_state", "jump_component", "velocity_component", "gravity_component", "screen_clamp_component", "state_machine", "animation_player", "sprite", "character")]
 script = ExtResource("45_l3gqj")
 fall_state = NodePath("../Fall")
 run_state = NodePath("../Run")
@@ -479,15 +494,16 @@ heavy_attack_state = NodePath("../AttackHeavy")
 dash_state = NodePath("../Dash")
 crouch_state = NodePath("../Crouch")
 jump_component = NodePath("../../Composition Nodes/Jump")
-player_velocity = NodePath("../../Composition Nodes/Velocity")
-player_gravity = NodePath("../../Composition Nodes/Gravity")
-state_machine = NodePath("..")
-animation_player = NodePath("../../Character/Sprite/AnimationPlayer")
-sprite = NodePath("../../Character/Sprite")
-character = NodePath("../../Character")
+velocity_component = NodePath("../../Composition Nodes/Velocity")
+gravity_component = NodePath("../../Composition Nodes/Gravity")
+screen_clamp_component = NodePath("../../Composition Nodes/Screen Clamp")
+state_machine = NodePath("../../Composition Nodes/Finite State Machine")
+animation_player = NodePath("../../Sprite/AnimationPlayer")
+sprite = NodePath("../../Sprite")
+character = NodePath("../..")
 animation_name = "_attack_combo"
 
-[node name="AttackHeavy" type="Node" parent="Finite State Machine" node_paths=PackedStringArray("fall_state", "run_state", "jump_state", "attack_state", "idle_state", "combo_attack_state", "heavy_attack_state", "dash_state", "crouch_state", "jump_component", "player_velocity", "player_gravity", "state_machine", "animation_player", "sprite", "character")]
+[node name="AttackHeavy" type="Node" parent="Player States" node_paths=PackedStringArray("fall_state", "run_state", "jump_state", "attack_state", "idle_state", "combo_attack_state", "heavy_attack_state", "dash_state", "crouch_state", "jump_component", "velocity_component", "gravity_component", "screen_clamp_component", "state_machine", "animation_player", "sprite", "character")]
 script = ExtResource("55_plyfc")
 fall_state = NodePath("../Fall")
 run_state = NodePath("../Run")
@@ -499,15 +515,16 @@ heavy_attack_state = NodePath(".")
 dash_state = NodePath("../Dash")
 crouch_state = NodePath("../Crouch")
 jump_component = NodePath("../../Composition Nodes/Jump")
-player_velocity = NodePath("../../Composition Nodes/Velocity")
-player_gravity = NodePath("../../Composition Nodes/Gravity")
-state_machine = NodePath("..")
-animation_player = NodePath("../../Character/Sprite/AnimationPlayer")
-sprite = NodePath("../../Character/Sprite")
-character = NodePath("../../Character")
+velocity_component = NodePath("../../Composition Nodes/Velocity")
+gravity_component = NodePath("../../Composition Nodes/Gravity")
+screen_clamp_component = NodePath("../../Composition Nodes/Screen Clamp")
+state_machine = NodePath("../../Composition Nodes/Finite State Machine")
+animation_player = NodePath("../../Sprite/AnimationPlayer")
+sprite = NodePath("../../Sprite")
+character = NodePath("../..")
 animation_name = "_attack_dash"
 
-[connection signal="animation_complete" from="Character" to="Finite State Machine/Dash" method="_on_character_animation_complete"]
-[connection signal="animation_complete" from="Character" to="Finite State Machine/Attack" method="_on_character_animation_complete"]
-[connection signal="animation_complete" from="Character" to="Finite State Machine/AttackCombo" method="_on_character_animation_complete"]
-[connection signal="animation_complete" from="Character" to="Finite State Machine/AttackHeavy" method="_on_character_animation_complete"]
+[connection signal="animation_complete" from="." to="Player States/Dash" method="_on_player_animation_complete"]
+[connection signal="animation_complete" from="." to="Player States/Attack" method="_on_player_animation_complete"]
+[connection signal="animation_complete" from="." to="Player States/AttackCombo" method="_on_player_animation_complete"]
+[connection signal="animation_complete" from="." to="Player States/AttackHeavy" method="_on_player_animation_complete"]
