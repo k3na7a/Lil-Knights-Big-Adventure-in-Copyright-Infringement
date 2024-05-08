@@ -1,54 +1,40 @@
-[gd_scene load_steps=11 format=3 uid="uid://c0dptgx1b61lr"]
+[gd_scene load_steps=7 format=3 uid="uid://c0dptgx1b61lr"]
 
+[ext_resource type="Script" path="res://Scenes/node.gd" id="1_jqcm3"]
 [ext_resource type="PackedScene" uid="uid://bdij7iwsajls3" path="res://Scenes/Player/Player.tscn" id="1_khw5y"]
 [ext_resource type="Texture2D" uid="uid://b3y02i8v6c2l4" path="res://Assets/Tilesets/Tileset.png" id="1_o56qh"]
-[ext_resource type="Texture2D" uid="uid://tgx052v2yaqw" path="res://Assets/Backgrounds/Clouds 2/1.png" id="1_w5tqc"]
-[ext_resource type="Texture2D" uid="uid://cvc3mq76ufs0f" path="res://Assets/Backgrounds/Clouds 2/3.png" id="2_iv0c5"]
-[ext_resource type="Texture2D" uid="uid://cqlh1n7gncsp1" path="res://Assets/Backgrounds/layers/parallax-mountain-montain-far.png" id="2_o38ew"]
-[ext_resource type="Texture2D" uid="uid://dsga334wmjau3" path="res://Assets/Backgrounds/layers/parallax-mountain-mountains.png" id="3_0y0vb"]
-[ext_resource type="Texture2D" uid="uid://bcj2ehbtjnayn" path="res://Assets/Backgrounds/Clouds 2/4.png" id="3_3ep05"]
-[ext_resource type="Texture2D" uid="uid://uueq6spyv3sl" path="res://Assets/Backgrounds/layers/parallax-mountain-trees.png" id="4_kuft6"]
+[ext_resource type="PackedScene" uid="uid://cux3wjkx85jfu" path="res://Scenes/ui.tscn" id="4_wbtdt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ack4u"]
 texture = ExtResource("1_o56qh")
 1:0/0 = 0
-1:0/0/z_index = 1
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
 3:0/0 = 0
-3:0/0/z_index = 1
 3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:0/0/physics_layer_0/angular_velocity = 0.0
 7:0/0 = 0
-7:0/0/z_index = 1
 7:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 7:0/0/physics_layer_0/angular_velocity = 0.0
 8:0/0 = 0
-8:0/0/z_index = 1
 8:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 8:0/0/physics_layer_0/angular_velocity = 0.0
 9:0/0 = 0
-9:0/0/z_index = 1
 9:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 9:0/0/physics_layer_0/angular_velocity = 0.0
 10:0/0 = 0
-10:0/0/z_index = 1
 10:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 10:0/0/physics_layer_0/angular_velocity = 0.0
 12:0/0 = 0
-12:0/0/z_index = 1
 12:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 12:0/0/physics_layer_0/angular_velocity = 0.0
 13:0/0 = 0
-13:0/0/z_index = 1
 13:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 13:0/0/physics_layer_0/angular_velocity = 0.0
 14:0/0 = 0
-14:0/0/z_index = 1
 14:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 14:0/0/physics_layer_0/angular_velocity = 0.0
 15:0/0 = 0
-15:0/0/z_index = 1
 15:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 15:0/0/physics_layer_0/angular_velocity = 0.0
 1:1/0 = 0
@@ -228,7 +214,6 @@ texture = ExtResource("1_o56qh")
 11:7/0/physics_layer_0/angular_velocity = 0.0
 11:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 5:0/0 = 0
-5:0/0/z_index = 1
 5:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:0/0/physics_layer_0/angular_velocity = 0.0
 
@@ -237,102 +222,39 @@ physics_layer_0/collision_layer = 3
 physics_layer_0/collision_mask = 3
 sources/10 = SubResource("TileSetAtlasSource_ack4u")
 
-[node name="World" type="Node"]
+[node name="World" type="Node" node_paths=PackedStringArray("player")]
+script = ExtResource("1_jqcm3")
+player = NodePath("Player")
+
+[node name="UI" parent="." instance=ExtResource("4_wbtdt")]
+dev_hud_active = false
+
+[node name="Player" parent="." instance=ExtResource("1_khw5y")]
+position = Vector2(88, 632)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(109, 134)
-zoom = Vector2(2, 2)
+position = Vector2(88, 632)
+zoom = Vector2(4, 4)
 limit_left = 0
 limit_top = 0
 limit_right = 1280
-limit_bottom = 360
+limit_bottom = 720
 limit_smoothed = true
-position_smoothing_speed = 60.0
+position_smoothing_speed = 30.0
 drag_horizontal_enabled = true
 drag_left_margin = 0.5
 editor_draw_limits = true
 editor_draw_drag_margin = true
 
-[node name="Player" parent="." instance=ExtResource("1_khw5y")]
-position = Vector2(109, 134)
-
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
-remote_path = NodePath("../../Camera2D")
-
 [node name="Tileset" type="TileMap" parent="."]
 z_index = 1
-position = Vector2(229.441, 252.01)
-scale = Vector2(1.3181, 1.47739)
+position = Vector2(192, 640)
 tile_set = SubResource("TileSet_cq5bx")
 format = 2
-layer_0/tile_data = PackedInt32Array(327669, 524298, 1, 327670, 589834, 1, 327671, 524298, 1, 327672, 589834, 1, 327673, 524298, 1, 327674, 589834, 1, 327675, 524298, 1, 327676, 589834, 1, 327677, 524298, 1, 327678, 589834, 1, 327679, 524298, 1, 262144, 589834, 1, 262145, 524298, 1, 262146, 589834, 1, 262147, 524298, 1, 262148, 589834, 1, 262149, 524298, 1, 262150, 589834, 1, 262151, 524298, 1, 262152, 589834, 1, 262153, 524298, 1, 262154, 589834, 1, 262155, 524298, 1, 262156, 589834, 1, 262157, 524298, 1, 262158, 589834, 1, 262159, 524298, 1, 262160, 589834, 1, 262161, 524298, 1, 262162, 589834, 1, 262163, 524298, 1, 262164, 524298, 1, 262165, 589834, 1, 262166, 524298, 1, 262167, 589834, 1, 262168, 524298, 1, 262169, 589834, 1, 262170, 524298, 1, 262171, 589834, 1, 262172, 524298, 1, 262173, 589834, 1, 262174, 524298, 1, 262175, 589834, 1, 262176, 524298, 1, 262177, 589834, 1, 262178, 524298, 1, 262179, 589834, 1, 262180, 524298, 1, 262181, 589834, 1, 262182, 524298, 1, 262183, 589834, 1, 262184, 524298, 1, 262185, 589834, 1, 262186, 524298, 1, 262187, 589834, 1, 262188, 524298, 1, 262189, 589834, 1, 262190, 524298, 1, 262191, 589834, 1, 262192, 524298, 1, 262193, 589834, 1, 262133, 524298, 0, 262134, 589834, 0, 262135, 524298, 0, 262136, 589834, 0, 262137, 524298, 0, 262138, 589834, 0, 262139, 524298, 0, 262140, 589834, 0, 262141, 524298, 0, 262142, 589834, 0, 262143, 524298, 0, 196608, 589834, 0, 196609, 524298, 0, 196610, 589834, 0, 196611, 524298, 0, 196612, 589834, 0, 196613, 524298, 0, 196614, 589834, 0, 196615, 524298, 0, 196616, 589834, 0, 196617, 524298, 0, 196618, 589834, 0, 196619, 524298, 0, 196620, 589834, 0, 196621, 524298, 0, 196622, 589834, 0, 196623, 524298, 0, 196624, 589834, 0, 196625, 524298, 0, 196626, 589834, 0, 196627, 524298, 0, 196628, 589834, 0, 196629, 524298, 0, 196630, 589834, 0, 196631, 524298, 0, 196632, 589834, 0, 196633, 524298, 0, 196634, 589834, 0, 196635, 524298, 0, 196636, 589834, 0, 196637, 524298, 0, 196638, 589834, 0, 196639, 524298, 0, 196640, 589834, 0, 196641, 524298, 0, 196642, 589834, 0, 196643, 524298, 0, 196644, 589834, 0, 196645, 524298, 0, 196646, 589834, 0, 196647, 524298, 0, 196648, 589834, 0, 196649, 524298, 0, 196650, 589834, 0, 196651, 524298, 0, 196652, 589834, 0, 196653, 524298, 0, 196654, 589834, 0, 196655, 524298, 0, 196656, 589834, 0, 196657, 524298, 0)
+layer_0/z_index = -1
+layer_0/tile_data = PackedInt32Array(262132, 524298, 0, 327668, 524298, 1, 262133, 589834, 0, 327669, 589834, 1, 262134, 524298, 0, 327670, 524298, 1, 262135, 589834, 0, 327671, 589834, 1, 262136, 524298, 0, 327672, 524298, 1, 262137, 589834, 0, 327673, 589834, 1, 262138, 524298, 0, 327674, 524298, 1, 262139, 589834, 0, 327675, 589834, 1, 262140, 524298, 0, 327676, 524298, 1, 262141, 655370, 0, 327677, 655370, 1, 196615, 589834, 0, 262151, 589834, 1, 196616, 524298, 0, 262152, 524298, 1, 196617, 589834, 0, 262153, 589834, 1, 196618, 524298, 0, 262154, 524298, 1, 196619, 589834, 0, 262155, 589834, 1, 196620, 524298, 0, 262156, 524298, 1, 196621, 589834, 0, 262157, 589834, 1, 196622, 524298, 0, 262158, 524298, 1, 196623, 589834, 0, 262159, 589834, 1, 196624, 524298, 0, 262160, 524298, 1, 196625, 589834, 0, 262161, 589834, 1, 196626, 524298, 0, 262162, 524298, 1, 196627, 589834, 0, 262163, 589834, 1, 196628, 524298, 0, 262164, 524298, 1, 196629, 589834, 0, 262165, 589834, 1, 196630, 524298, 0, 262166, 524298, 1, 196631, 589834, 0, 262167, 589834, 1, 196632, 524298, 0, 262168, 524298, 1, 196633, 589834, 0, 262169, 589834, 1, 196634, 524298, 0, 262170, 524298, 1, 196635, 589834, 0, 262171, 589834, 1, 196636, 524298, 0, 262172, 524298, 1, 196637, 589834, 0, 262173, 589834, 1, 196638, 524298, 0, 262174, 524298, 1, 196639, 589834, 0, 262175, 589834, 1, 196640, 524298, 0, 262176, 524298, 1, 196641, 589834, 0, 262177, 589834, 1, 196642, 524298, 0, 262178, 524298, 1, 196643, 589834, 0, 262179, 589834, 1, 196644, 524298, 0, 262180, 524298, 1, 196645, 589834, 0, 262181, 589834, 1, 196646, 524298, 0, 262182, 524298, 1, 196647, 589834, 0, 262183, 589834, 1, 196648, 524298, 0, 262184, 524298, 1, 196649, 589834, 0, 262185, 589834, 1, 196650, 524298, 0, 262186, 524298, 1, 196651, 589834, 0, 262187, 589834, 1, 196652, 524298, 0, 262188, 524298, 1, 196653, 589834, 0, 262189, 589834, 1, 196654, 524298, 0, 262190, 524298, 1, 196655, 589834, 0, 262191, 589834, 1, 196656, 524298, 0, 262192, 524298, 1, 196657, 589834, 0, 262193, 589834, 1, 196658, 524298, 0, 262194, 524298, 1, 196659, 589834, 0, 262195, 589834, 1, 196660, 524298, 0, 262196, 524298, 1, 196661, 589834, 0, 262197, 589834, 1, 196662, 524298, 0, 262198, 524298, 1, 196663, 589834, 0, 262199, 589834, 1, 196664, 524298, 0, 262200, 524298, 1, 196665, 589834, 0, 262201, 589834, 1, 196666, 524298, 0, 262202, 524298, 1, 196667, 589834, 0, 262203, 589834, 1, 196668, 524298, 0, 262204, 524298, 1, 196669, 589834, 0, 262205, 589834, 1, 196670, 524298, 0, 262206, 524298, 1, 196671, 589834, 0, 262207, 589834, 1, 196672, 524298, 0, 262208, 524298, 1, 196673, 589834, 0, 262209, 589834, 1, 196674, 524298, 0, 262210, 524298, 1, 196675, 589834, 0, 262211, 589834, 1, 196614, 458762, 0, 262150, 458762, 1, 262142, 524298, 0, 327678, 524298, 1, 262143, 589834, 0, 327679, 589834, 1, 196608, 524298, 0, 262144, 524298, 1, 196609, 589834, 0, 262145, 589834, 1, 196610, 524298, 0, 262146, 524298, 1, 196611, 589834, 0, 262147, 589834, 1, 196612, 524298, 0, 262148, 524298, 1, 196613, 589834, 0, 262149, 589834, 1, 131065, 720906, 7, 131066, 720906, 7, 131067, 720906, 7, 131068, 720906, 7)
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-texture_repeat = 2
-position = Vector2(1.19209e-07, -1.81899e-12)
-texture = ExtResource("1_w5tqc")
-centered = false
-region_enabled = true
-region_rect = Rect2(0, 0, 1280, 360)
-
-[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.1, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5"]
-texture_repeat = 2
-position = Vector2(1.19209e-07, -1.81899e-12)
-texture = ExtResource("2_iv0c5")
-centered = false
-region_enabled = true
-region_rect = Rect2(0, 0, 1280, 360)
-
-[node name="ParallaxLayer6" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.2, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer6"]
-texture_repeat = 2
-position = Vector2(1.19209e-07, -1.81899e-12)
-texture = ExtResource("3_3ep05")
-centered = false
-region_enabled = true
-region_rect = Rect2(0, 0, 1280, 360)
-
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.3, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
-texture_repeat = 2
-position = Vector2(0, 200)
-texture = ExtResource("2_o38ew")
-centered = false
-region_enabled = true
-region_rect = Rect2(0, 0, 1280, 160)
-region_filter_clip_enabled = true
-
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.4, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
-texture_repeat = 2
-position = Vector2(0, 200)
-texture = ExtResource("3_0y0vb")
-centered = false
-region_enabled = true
-region_rect = Rect2(0, 0, 1280, 160)
-
-[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
-texture_repeat = 2
-motion_scale = Vector2(0.5, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
-texture_repeat = 2
-position = Vector2(0, 200)
-texture = ExtResource("4_kuft6")
-centered = false
-region_enabled = true
-region_rect = Rect2(0, 0, 1280, 160)
+[connection signal="character_status" from="Player" to="UI" method="_on_player_character_status"]

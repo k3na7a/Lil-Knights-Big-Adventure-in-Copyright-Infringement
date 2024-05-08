@@ -1,24 +1,16 @@
 class_name Player
 extends Entity
 
-@export var sprite				: Sprite2D
-@export var animation_player 	: AnimationPlayer
+@export_group("Character Nodes")
+@export var collision_shape	: CollisionShape2D
+@export var sprite			: SpriteComponent
+@export_group("Composition Nodes")
+@export var gravity_node	: GravityComponent
+@export var movement_node	: VelocityComponent
+@export var jump_node		: JumpComponent
+@export var health_node		: HealthComponent
+@export var input_bus		: InputBus
 
-signal animation_complete(animation_name:String)
+signal character_status(character:Player)
 
-func play_animation(animation_name:String) -> void :
-	animation_player.play(animation_name)
-
-func stop_animation() -> void :
-	animation_player.stop()
-
-func flip_sprite(direction:float) -> void :
-	sprite.flip_h = (direction == -1)
-	sprite.offset.x = direction * abs(sprite.offset.x)
-
-func _ready() -> void :
-	super()
-	animation_player.animation_finished.connect(_on_animation_complete)
-
-func _on_animation_complete(animation_name:String) -> void:
-	emit_signal("animation_complete", animation_name)
+func _physics_process(delta:float) -> void : super(delta); emit_signal("character_status", self)

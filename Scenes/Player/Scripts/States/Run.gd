@@ -3,15 +3,13 @@ extends PlayerState
 func process_input(event:InputEvent) -> State :
 	super(event)
 	
-	if event.is_action_pressed("Jump") 		: return jump_state
-	elif event.is_action_pressed("Attack") 	: return heavy_attack_state
-	elif event.is_action_pressed("Action")	: return dash_state
+	if event.is_action_pressed("Jump") 		: return state_machine.states["jump"]
+	elif event.is_action_pressed("Attack") 	: return state_machine.states["attack"]
 	return null
 
 func process_physics(delta:float) -> State :
 	super(delta)
 	
-	if !character.is_on_floor() 									: return fall_state
-	elif InputBus.get_axis() == 0.0 and InputBus.input_down == 1.0 	: return crouch_state
-	elif InputBus.get_axis() == 0.0 								: return idle_state
+	if not character.is_on_floor() 	: return state_machine.states["fall"]
+	elif character.input_bus.get_axis() == 0.0 : return state_machine.states["idle"]
 	return null

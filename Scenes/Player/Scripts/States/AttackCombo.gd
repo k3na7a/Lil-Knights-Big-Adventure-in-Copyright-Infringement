@@ -18,17 +18,17 @@ func exit() -> void :
 func process_input(event:InputEvent) -> State :
 	super(event)
 	
-	if Input.is_action_just_pressed("Attack") : attack_buffer = true
+	if event.is_action_pressed("Attack") : attack_buffer = true
 	return null
 
 func process_physics(delta:float) -> State :
 	super(delta)
 	
 	if attack_complete :
-		if not character.is_on_floor() 		: return fall_state
-		elif combo_attack or attack_buffer 	: return heavy_attack_state
-		else 								: return idle_state				if InputBus.get_axis() == 0.0 else run_state
+		if not character.is_on_floor() 		: return state_machine.states["fall"]
+		elif combo_attack or attack_buffer 	: return state_machine.states["attackheavy"]
+		else : return state_machine.states["idle"] if character.input_bus.get_axis() == 0.0 else state_machine.states["run"]
 	return null
 
-func _on_player_animation_complete(anim_name:String) -> void  : 
+func _on_sprite_animation_complete(anim_name:String) -> void :
 	if anim_name == animation_name : attack_complete = true

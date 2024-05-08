@@ -1,32 +1,35 @@
 class_name Input_Bus
 extends Node
 
-@export_group('Directions')
-@export var input_right		: float = 0.0
-@export var input_left		: float = 0.0
-@export var input_up		: float = 0.0
-@export var input_down		: float = 0.0
-@export_group('Actions')
-@export var input_jump		: bool = false
-@export var input_action	: bool = false
-@export var input_attack	: bool = false
+enum ACTION { NULL, JUMP, ATTACK, ACTION }
 
-func _unhandled_input(event:InputEvent) -> void:
-	if(event.is_action("Right")):
-		input_right 	= Input.get_action_strength("Right")
-	elif(event.is_action("Left")):
-		input_left 		= Input.get_action_strength("Left")
-	elif(event.is_action("Up")):
-		input_up 		= Input.get_action_strength("Up")
-	elif(event.is_action("Down")):
-		input_down 		= Input.get_action_strength("Down")
-	elif(event.is_action("Jump")):
-		input_jump 		= Input.is_action_pressed("Jump")
-	elif(event.is_action("Action")):
-		input_action	= Input.is_action_pressed("Action")
-	elif(event.is_action("Attack")):
-		input_attack	= Input.is_action_pressed("Attack")
+var input_right			: float 	= 0.0
+var input_left			: float 	= 0.0
+var input_up			: float 	= 0.0
+var input_down			: float 	= 0.0
 
-# return -1 if left held elif 1 if right held else 0
-func get_axis() -> float:
-	return input_right - input_left
+var input_jump			: bool 		= false
+var input_action		: bool 		= false
+var input_attack		: bool 		= false
+var input_options		: bool		= false
+
+var input_buffer_time 	: float 	= 0.2
+var buffered_action 	: ACTION 	= ACTION.NULL
+
+func _process(_delta:float) -> void:
+	input_right 	= Input.get_action_strength("Right")
+	input_left 		= Input.get_action_strength("Left")
+	input_up 		= Input.get_action_strength("Up")
+	input_down 		= Input.get_action_strength("Down")
+	input_jump 		= Input.is_action_pressed("Jump")
+	input_attack 	= Input.is_action_pressed("Attack")
+	input_action	= Input.is_action_pressed("Action")
+	input_options 	= Input.is_action_pressed("Options")
+
+func get_axis() -> float: return input_right - input_left
+
+func buffer_input(action:ACTION) -> void :
+	if not buffered_action == action :
+		buffered_action = action
+		get_tree().create_timer(input_buffer_time).timeout.connect(_buffer_timeout)
+func _buffer_timeout() -> void : buffered_action = ACTION.NULL

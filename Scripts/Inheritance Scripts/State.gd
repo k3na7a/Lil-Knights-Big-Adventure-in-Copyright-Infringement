@@ -1,16 +1,9 @@
 class_name State
 extends Node
 
-var entity 		: Entity
-var states 		: Dictionary = {}
-
-@export var state_machine		: StateMachineComponent
-
-@export var animation_player	: AnimationPlayer
-@export var sprite				: Sprite2D
-@export var character			: CharacterBody2D
-
-@export var animation_name	: String
+var character		: CharacterBody2D
+var states 			: Dictionary = {}
+var state_machine	: StateMachineComponent
 
 func enter() 	-> void: pass
 func exit() 	-> void: pass
